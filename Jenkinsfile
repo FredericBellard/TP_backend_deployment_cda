@@ -9,6 +9,17 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/FredericBellard/TP_backend_deployment_cda.git'
             }
         }
+        stage('Contrôle qualité'){
+            steps{
+                sh """
+                sonar-scanner \
+                -Dsonar.projectKey=fred_TP_backend_deployment_cda \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=https://669b-212-114-26-208.ngrok-free.app \
+                -Dsonar.token=s${SonarToken}
+                """
+            }
+        }       
         stage('Déploiement') {
             steps {
                    sh """
