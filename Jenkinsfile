@@ -16,7 +16,7 @@ pipeline {
                 -Dsonar.projectKey=fred_TP_backend_deployment_cda \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=https://669b-212-114-26-208.ngrok-free.app \
-                -Dsonar.token=s${SonarToken}
+                -Dsonar.token=${SonarToken}
                 """
             }
         }       
