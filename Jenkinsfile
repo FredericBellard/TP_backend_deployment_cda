@@ -45,7 +45,7 @@ pipeline {
                 sh """
                 sshpass -p '${Mdp}' ssh -o StrictHostKeyChecking=no ${Lienssh} 'bash -s' <<'ENDSSH'
                 cd www/
-                cat > .env <<EOF
+                cat << EOF > .env
                 ${credentials}
                 EOF
                 php migrate.php
