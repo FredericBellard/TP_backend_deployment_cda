@@ -43,13 +43,13 @@ pipeline {
         stage('migrate') {
             steps {
                 sh """
-                sshpass -p '${Mdp}' ssh -o StrictHostKeyChecking=no ${Lienssh} 'bash -s' <<'ENDSSH'
-                cd www/
-                cat << EOF > .env
-                ${credentials}
-                EOF
-                php migrate.php
-                ENDSSH
+sshpass -p '${Mdp}' ssh -o StrictHostKeyChecking=no ${Lienssh} 'bash -s' <<'ENDSSH'
+cd www/
+cat << EOF > .env
+${credentials}
+EOF
+php migrate.php
+ENDSSH
                 """
             }
         }
