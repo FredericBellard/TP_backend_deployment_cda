@@ -40,17 +40,17 @@ pipeline {
                 """   
             }
         }
-        stage('migrate'){
-            steps{
+        stage('migrate') {
+            steps {
                 sh """
-                    sshpass -p ${Mdp} ssh -o StrictHostKeyChecking=no ${Lienssh} '
-                    cd www/ &&
-                    cat > www/.env <<EOF 
-                    ${credentials} 
-                    EOF
-                    php migrate.php
-                    '
-                """    
+                sshpass -p '${Mdp}' ssh -o StrictHostKeyChecking=no ${Lienssh} 'bash -s' <<'ENDSSH'
+                cd www/
+                cat > .env <<EOF
+                ${credentials}
+                EOF
+                php migrate.php
+                ENDSSH
+                """
             }
         }
     }
